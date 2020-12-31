@@ -21,6 +21,12 @@ export default class AddUserForm extends Component {
         }))
     }
 
+    buttonDisabled = () => {
+        const { firstName, lastName, username} = this.state.user
+
+        return firstName === '' || lastName === '' || username === ''
+    }
+
     addUser = (event) => {
         event.preventDefault();
         this.props.addUser(this.state.user)
@@ -45,24 +51,24 @@ export default class AddUserForm extends Component {
         return (
             <form onSubmit={this.addUser}>
                 <label>First Name</label>
-                <input type="text" 
+                <input type="text"
                     name="firstName" 
                     value={user.firstName}
                     onChange={this.handleInput}/>
                 <br/><br/>
                 <label>Last Name</label>
-                <input type="text" 
+                <input type="text"
                     name="lastName" 
                     value={user.lastName}
                     onChange={this.handleInput}/>
                 <br/><br/>
                 <label>Username</label>
-                <input type="text" 
+                <input type="text"
                     name="username" 
                     value={user.username}
                     onChange={this.handleInput}/>
                 <br/><br/>
-                <button type="submit">Add</button>
+                <button type="submit" disabled={this.buttonDisabled()}>Add</button>
             </form>
         )
     }
