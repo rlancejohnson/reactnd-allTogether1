@@ -43,6 +43,6 @@
 
     * Requirements
         1. The list item text should be set to "rlancejohnson played 
-        {{gamesPlayed}} games."
+        {{gamesPlayed}} games." by default
         1. The list item text should be set to "rlancejohnson played \* games." if the hideScores prop is true
 
