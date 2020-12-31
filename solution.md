@@ -20,8 +20,6 @@
         1. Username input
         1. Add button
     * Requirements
-        1. All three inputs are required
-        1. Username input should be unique
         1. Add button is disabled if one field is blank
         1. An error displays once add button is clicked if username already exists
 1. Hide Scores
