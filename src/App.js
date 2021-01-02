@@ -8,13 +8,22 @@ import HideScoresButton from './HideScoresButton'
 export default class App extends Component {
   state = {
     users: [],
-    hideScores: false
+    hideScores: false,
+    inputErr: ''
   }
 
   addUser = (user) => {
-    this.setState((prevState) => ({
-      users: [...prevState.users, user]
-    }))
+    if(this.state.users.some(element => element.username === user.username)) {
+      this.setState({
+        inputErr: 'You have entered an invalid username. Try again.'
+      })
+      
+    } else {
+      this.setState((prevState) => ({
+        users: [...prevState.users, user],
+        inputErr: ''
+      }))
+    }
   }
 
   updateHideScores = (value) => {
@@ -24,7 +33,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { users, hideScores } = this.state
+    const { users, hideScores, inputErr } = this.state
 
     return (
       <div className="App">
@@ -32,7 +41,7 @@ export default class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
-        <AddUserForm addUser={this.addUser}/>
+        <AddUserForm addUser={this.addUser} inputErr={inputErr}/>
         <br/><br/>
         <HideScoresButton hideScores={hideScores} updateHideScores={this.updateHideScores}/>
         <UsersList users={users} hideScores={hideScores}/>
