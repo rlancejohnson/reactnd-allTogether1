@@ -25,7 +25,9 @@ export default class UsersList extends Component {
                     <HideScoresButton hideScores={hideScores} updateHideScores={this.updateHideScores}/>
                 </div>
                 <ol>
-                    {users.map(user => (
+                    {users.sort((user1, user2) => {
+                        return user2.gamesPlayed - user1.gamesPlayed
+                    }).map(user => (
                         <User key={user.username} user={user} hideScores={hideScores}/>
                     ))}
                 </ol>

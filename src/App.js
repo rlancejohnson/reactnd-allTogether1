@@ -17,9 +17,7 @@ export default class App extends Component {
       
     } else {
       this.setState((prevState) => ({
-        users: [...prevState.users, user].sort((user1, user2) => {
-          return user1.gamesPlayed - user2.gamesPlayed
-        })
+        users: [...prevState.users, user]
       }))
     }
 
