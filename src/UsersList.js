@@ -1,13 +1,39 @@
-import React from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import HideScoresButton from './HideScoresButton'
 import User from './User.js'
 
-export default function UsersList(props) {
-    return (
-        <div>
-            <h2>Users</h2>
-            {props.users.map(user => (
-                <User key={user.username} user={user} hideScores={props.hideScores}/>
-            ))}
-        </div>
-    )
+export default class UsersList extends Component {
+    state = {
+        hideScores: false,
+    }
+
+    updateHideScores = (value) => {
+        this.setState({
+            hideScores: value
+        })
+    }
+
+    render() {
+        const { hideScores } = this.state
+        const { users } = this.props
+
+        return (
+            <div>
+                <div>
+                    <h1>Users</h1>
+                    <HideScoresButton hideScores={hideScores} updateHideScores={this.updateHideScores}/>
+                </div>
+                <ol>
+                    {users.map(user => (
+                        <User key={user.username} user={user} hideScores={hideScores}/>
+                    ))}
+                </ol>
+            </div>
+        )
+    }
+}
+
+UsersList.propTypes = {
+    users: PropTypes.array.isRequired
 }

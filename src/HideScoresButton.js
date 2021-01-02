@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class HideScoresButton extends Component {
     handleClick = () => {
@@ -9,7 +10,11 @@ export default class HideScoresButton extends Component {
         const { hideScores } = this.props
 
         return (
-            <button onClick={this.handleClick}>{hideScores ? `Show the Number of Games Played` : `Hide the Number of Games Played`}</button>
+            <button className="smallButton" onClick={this.handleClick}>{hideScores ? `Show` : `Hide`} the Number of Games Played</button>
         )
     }
+}
+
+HideScoresButton.propTypes = {
+    updateHideScores: PropTypes.func.isRequired
 }
